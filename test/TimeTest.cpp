@@ -2,9 +2,8 @@
 // Created by mobin on 22/10/23.
 //
 
-#include "Time.h"
 #include <gtest/gtest.h>
-#include <sstream>
+#include "Time.h"
 
 TEST(Time, Operator) {
   Time time1(0, 0, 0);

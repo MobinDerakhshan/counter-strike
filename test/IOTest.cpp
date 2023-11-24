@@ -1,15 +1,16 @@
 //
 // Created by mobin on 21/10/23.
 //
-#include "IO.h"
 #include <gtest/gtest.h>
 #include <sstream>
+#include "Team.h"
+#include "IO.h"
 
 TEST(IO, get_command_number) {
   std::istringstream input("ROUND 42");
   std::cin.rdbuf(input.rdbuf());
 
-  EXPECT_EQ(IO::get_command_number(), 42);
+  EXPECT_EQ(IO::get_number_of_commands(), 42);
 }
 
 TEST(IO, get_number_of_rounds) {
@@ -34,7 +35,8 @@ TEST(IO, print_winner) {
   std::streambuf *originalCout = std::cout.rdbuf();
   std::cout.rdbuf(outputStream.rdbuf());
 
-  IO::print_winner("team");
+  Team team("team",vector<Weapon>{});
+  IO::print_winner(team);
 
   std::string output = outputStream.str();
   std::string expectedOutput = "team won\n";
@@ -46,10 +48,10 @@ TEST(IO, command_output) {
   std::streambuf *originalCout = std::cout.rdbuf();
   std::cout.rdbuf(outputStream.rdbuf());
 
-  IO::print_winner("kjashhdfjalkshfj");
+  IO::command_output("kjashhdfjalkshfj");
 
   std::string output = outputStream.str();
-  std::string expectedOutput = "kjashhdfjalkshfj won\n";
+  std::string expectedOutput = "kjashhdfjalkshfj\n";
   EXPECT_EQ(output, expectedOutput);
 }
 
